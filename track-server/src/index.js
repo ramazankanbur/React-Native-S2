@@ -1,16 +1,20 @@
 require('./models/User');
+require('./models/Track');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const requireAuth = require('./middlewares/requireAuth');
 
+const requireAuth = require('./middlewares/requireAuth');
 const authRouter = require('./routes/authRoutes');
+const trackRouter = require('./routes/trackRoutes');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(authRouter);
+app.use(trackRouter);
+
 
 const mongoURI =
   'mongodb+srv://trackClusterAdmin:trackClusterAdmin@trackcluster-8oy8n.mongodb.net/test?retryWrites=true&w=majority';

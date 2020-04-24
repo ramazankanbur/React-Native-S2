@@ -29,7 +29,7 @@ router.post('/signin', async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(422).status({ error: 'Invalid password or email' });
+    return res.status(422).send({ error: 'Invalid password or email' });
   }
   
   try {
@@ -37,7 +37,7 @@ router.post('/signin', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
     res.send({ token });
   } catch (error) {
-    return res.status(422).status({ error: 'Invalid password or email' });
+    return res.status(422).send({ error: 'Invalid password or email' });
   }
 });
 
